@@ -11,4 +11,4 @@ Here we will also have a option where patients can tell their problems and the a
 
 
 
-Figma Prototype Link :  https://www.figma.com/file/GVJXlxB5MAGZ7qKR7OFfQN/HackNSU3_Sust_Dynamo?node-id=0%3A1
+Figma Prototype Link : https://www.figma.com/proto/GVJXlxB5MAGZ7qKR7OFfQN/HackNSU3_Sust_Dynamo?node-id=2%3A21&scaling=scale-down&page-id=0%3A1&starting-point-node-id=2%3A21
