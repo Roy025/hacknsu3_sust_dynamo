@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hacknsu3_sust_dynamo/const.dart';
+import 'package:hacknsu3_sust_dynamo/screens/patient_home/tabs/patient_profiledit_page.dart';
 
 import 'tabs/home.dart';
 import 'tabs/notification.dart';
@@ -26,9 +27,16 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageStorage(
-        child: currentScreen,
-        bucket: bucket,
+      // resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: screenH * .9,
+          width: screenW,
+          child: PageStorage(
+            child: currentScreen,
+            bucket: bucket,
+          ),
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -91,7 +99,7 @@ class _DashboardState extends State<Dashboard> {
                   minWidth: screenW / 4,
                   onPressed: () {
                     setState(() {
-                      currentScreen = Profile();
+                      currentScreen = patient_profEdit();
                       currentTab = 2;
                     });
                   },
@@ -115,43 +123,6 @@ class _DashboardState extends State<Dashboard> {
           ),
         ),
       ),
-      // bottomNavigationBar: Container(
-      //   height: screenH * 0.1,
-      //   child: Align(
-      //     child: BounceNavBar(
-      //       initialIndex: 0,
-      //       items: [
-      //         BounceAnimatedNavBarItem(
-      //           widget: Icon(
-      //             Icons.home,
-      //           ),
-      //           foregroundColor: Colors.blue,
-      //           backgroundColor: Colors.blue.shade200,
-      //         ),
-      //         BounceAnimatedNavBarItem(
-      //           widget: Icon(
-      //             Icons.notifications,
-      //           ),
-      //           foregroundColor: Colors.amber,
-      //           backgroundColor: Colors.amber.shade200,
-      //         ),
-      //         BounceAnimatedNavBarItem(
-      //           widget: Icon(
-      //             Icons.person,
-      //           ),
-      //           foregroundColor: Colors.pinkAccent.shade700,
-      //           backgroundColor: Colors.pinkAccent.shade100,
-      //         ),
-      //       ],
-      //       onTabChanged: (value) {
-      //         setState(() {
-      //           currentTab = value;
-      //           currentScreen = screens[value];
-      //         });
-      //       },
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

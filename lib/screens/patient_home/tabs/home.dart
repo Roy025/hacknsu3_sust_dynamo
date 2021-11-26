@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacknsu3_sust_dynamo/const.dart';
-
+import 'package:hacknsu3_sust_dynamo/screens/patient_home/tabs/notification.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: EdgeInsets.all(25),
+        padding: EdgeInsets.fromLTRB(8, screenH * .05, 8, 0),
         child: Column(
           children: <Widget>[
             CupertinoSearchTextField(
@@ -55,6 +55,7 @@ class _HomeState extends State<Home> {
               height: 18,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Container(
                   height: screenH / 4.3,
@@ -157,6 +158,24 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context, index) => buildCard(item: items[index]),
               ),
             ),
+            SizedBox(
+              height: screenH * .10,
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Color(0xffff0000)),
+                onPressed: () {
+                  //snackbar implementation
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Work In Progress")));
+                },
+                child: Text(
+                  'SOS',
+                  style: GoogleFonts.roboto(
+                      fontSize: 20,
+                      letterSpacing: 1.5,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                )),
           ],
         ),
       ),
@@ -166,41 +185,49 @@ class _HomeState extends State<Home> {
   Widget buildCard({
     required CardItem item,
   }) =>
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          height: screenH / 5,
-          width: screenW / 3,
-          child: Column(
-            children: [
-              Expanded(
-                child: item.image,
-              ),
-              Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    item.title,
-                    style: GoogleFonts.roboto(
-                      fontSize: 12,
-                      letterSpacing: 1.5,
-                      color: textColor,
-                    ),
-                  )),
-            ],
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(15),
+      InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Material(child: Completed())));
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: screenH / 5,
+            width: screenW / 3,
+            child: Column(
+              children: [
+                Expanded(
+                  child: item.image,
+                ),
+                Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      item.title,
+                      style: GoogleFonts.roboto(
+                        fontSize: 12,
+                        letterSpacing: 1.5,
+                        color: textColor,
+                      ),
+                    )),
+              ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 3,
-                offset: Offset(2, 3), // changes position of shadow
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15),
               ),
-            ],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 3,
+                  offset: Offset(2, 3), // changes position of shadow
+                ),
+              ],
+            ),
           ),
         ),
       );

@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hacknsu3_sust_dynamo/screens/Home/doc_apoint_req/doc_apoint_req_page.dart';
+import 'package:hacknsu3_sust_dynamo/screens/sign_in_up/sign_in_up.dart';
 import 'package:hacknsu3_sust_dynamo/screens/widget/top_blue_white.dart';
 
 import '../../const.dart';
@@ -137,7 +140,12 @@ class _doctor_profEditState extends State<doctor_profEdit> {
             selected = 0;
           });
           if (_formKey.currentState!.validate()) {
-            print('valid');
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DocApointReq(),
+                ),
+                (route) => false);
           } else {
             print('invalid');
           }
@@ -221,6 +229,17 @@ class _doctor_profEditState extends State<doctor_profEdit> {
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue[400])),
+                  TextButton(
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignInUp(),
+                            ),
+                            (route) => false);
+                      },
+                      child: Text("Sign Out")),
                   SizedBox(height: 20),
                   firstName,
                   SizedBox(height: 20),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hacknsu3_sust_dynamo/screens/doc_apoint_req/req.dart';
+import 'package:hacknsu3_sust_dynamo/const.dart';
+import 'package:hacknsu3_sust_dynamo/screens/Home/doc_apoint_req/req.dart';
+import 'package:hacknsu3_sust_dynamo/screens/Home/doctor_profiledit_page.dart';
 
-import '../../const.dart';
 import 'apoint.dart';
 
 class DocApointReq extends StatefulWidget {
@@ -19,6 +20,14 @@ class _DocApointReqState extends State<DocApointReq> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return doctor_profEdit();
+          }));
+        },
+        child: Icon(Icons.person),
+      ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(8.0, screenH * .05, 8, 0),
         child: Column(

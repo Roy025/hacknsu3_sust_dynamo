@@ -1,16 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hacknsu3_sust_dynamo/screens/Home/doc_apoint_req/doc_apoint_req_page.dart';
 
 import 'package:hacknsu3_sust_dynamo/screens/Home/doctor_profiledit_page.dart';
-import 'package:hacknsu3_sust_dynamo/screens/Home/patient_profiledit_page.dart';
+import 'package:hacknsu3_sust_dynamo/screens/patient_home/tabs/patient_profiledit_page.dart';
 
 import 'package:hacknsu3_sust_dynamo/screens/make_appointment/make_appointment.dart';
+import 'package:hacknsu3_sust_dynamo/screens/patient_home/dashboard.dart';
 import 'package:hacknsu3_sust_dynamo/screens/sign_in_up/sign_in_up.dart';
 import 'package:hacknsu3_sust_dynamo/screens/widget/top_blue_white.dart';
 
 import 'const.dart';
-import 'screens/Home/home.dart';
 
 //Buffer commit to main
 void main() async {
@@ -70,8 +72,22 @@ class BufferWidget extends StatelessWidget {
     screenH = MediaQuery.of(context).size.height;
     screenW = MediaQuery.of(context).size.width;
 
+    return StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.data != null) {
+            if (snapshot.data!.displayName == 'P') {
+              return Dashboard();
+            } else {
+              return DocApointReq();
+            }
+          }
 
-    return const SignInUp();
-
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        });
   }
 }

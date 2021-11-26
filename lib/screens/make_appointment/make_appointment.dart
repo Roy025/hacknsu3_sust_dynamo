@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hacknsu3_sust_dynamo/backend/data/model/doctor_info.dart';
 import 'package:hacknsu3_sust_dynamo/const.dart';
+import 'package:hacknsu3_sust_dynamo/screens/patient_home/dashboard.dart';
 import 'package:hacknsu3_sust_dynamo/screens/widget/top_blue_white.dart';
 
 class MakeAppointment extends StatefulWidget {
@@ -150,7 +151,12 @@ class _MakeAppointmentState extends State<MakeAppointment> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/appointment");
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Dashboard(),
+                    ),
+                    (route) => false);
               },
               child: Padding(
                 padding:

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacknsu3_sust_dynamo/backend/data/model/request_data.dart';
+import 'package:hacknsu3_sust_dynamo/const.dart';
 
-import '../../const.dart';
 
-class AppointmentPart extends StatelessWidget {
-  AppointmentPart({Key? key}) : super(key: key);
-  final List<ReqData> acceptDataList = [
+
+class RequestPart extends StatelessWidget {
+  RequestPart({Key? key}) : super(key: key);
+  final List<ReqData> reqData = [
     ReqData(
         name: "Name1",
         email: "Email1",
@@ -51,7 +52,7 @@ class AppointmentPart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: acceptDataList.length,
+      itemCount: reqData.length,
       itemBuilder: (context, index) {
         return Container(
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -80,7 +81,7 @@ class AppointmentPart extends StatelessWidget {
                     backgroundColor: Colors.blue.shade100,
                     radius: 25,
                     child: Text(
-                      acceptDataList[index].name[0],
+                      reqData[index].name[0],
                       style: GoogleFonts.lora(
                         fontSize: 25,
                         fontWeight: FontWeight.w900,
@@ -94,10 +95,10 @@ class AppointmentPart extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(acceptDataList[index].name,
+                        Text(reqData[index].name,
                             style: Theme.of(context).textTheme.bodyText1),
                         // Text(
-                        //   acceptDataList[index].email,
+                        //   reqData[index].email,
                         // ),
                         SizedBox(
                           height: 8,
@@ -113,7 +114,7 @@ class AppointmentPart extends StatelessWidget {
                                     size: 12,
                                   ),
                                   Text(
-                                    acceptDataList[index].date,
+                                    reqData[index].date,
                                     style: textStyle.copyWith(
                                         fontSize: 10,
                                         fontWeight: FontWeight.w100),
@@ -127,7 +128,7 @@ class AppointmentPart extends StatelessWidget {
                                     size: 12,
                                   ),
                                   Text(
-                                    acceptDataList[index].time,
+                                    reqData[index].time,
                                     style: textStyle.copyWith(
                                         fontSize: 10,
                                         fontWeight: FontWeight.w100),
@@ -149,18 +150,18 @@ class AppointmentPart extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  // ElevatedButton(
-                  //     onPressed: () {},
-                  //     style:
-                  //         ElevatedButton.styleFrom(primary: Color(0xffF36262)),
-                  //     child: SizedBox(
-                  //         width: screenW * 0.3,
-                  //         child: Center(child: Text("Reject")))),
+                  ElevatedButton(
+                      onPressed: () {},
+                      style:
+                          ElevatedButton.styleFrom(primary: Color(0xffF36262)),
+                      child: SizedBox(
+                          width: screenW * 0.3,
+                          child: Center(child: Text("Reject")))),
                   ElevatedButton(
                       onPressed: () {},
                       child: SizedBox(
                           width: screenW * 0.3,
-                          child: Center(child: Text("Done"))))
+                          child: Center(child: Text("Accept"))))
                 ],
               )
             ],

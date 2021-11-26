@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacknsu3_sust_dynamo/const.dart';
 import 'package:hacknsu3_sust_dynamo/screens/patient_home/dashboard.dart';
+import 'package:hacknsu3_sust_dynamo/screens/sign_in_up/sign_up_2.dart';
 import 'package:lottie/lottie.dart';
 
 class SignInUp extends StatefulWidget {
@@ -105,76 +106,91 @@ class SignUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        InkWell(
-          onTap: () {
-            //ToDo: navigate to patient sign up
-          },
-          child: Container(
-              height: screenH * .40,
-              width: screenH * .40,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(15),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SignUp2(s: 'P'),
                 ),
-                boxShadow: [
-                  BoxShadow(
-                      // color: Color.fromRGBO(0, 119, 182, 0.6),
-                      color: const Color(0xff0077B6).withOpacity(.3),
-                      offset: const Offset(3, 3),
-                      blurRadius: 6),
-                ],
-                color: Colors.white,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 4,
-                    child: LottieBuilder.network(
-                      "https://assets6.lottiefiles.com/packages/lf20_ErlWV1.json",
-                      reverse: true,
-                      fit: BoxFit.contain,
+              );
+            },
+            child: Container(
+                height: screenH * .40,
+                width: screenH * .40,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                        // color: Color.fromRGBO(0, 119, 182, 0.6),
+                        color: const Color(0xff0077B6).withOpacity(.3),
+                        offset: const Offset(3, 3),
+                        blurRadius: 6),
+                  ],
+                  color: Colors.white,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: LottieBuilder.network(
+                        "https://assets6.lottiefiles.com/packages/lf20_ErlWV1.json",
+                        reverse: true,
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  ),
-                  const Expanded(flex: 1, child: Text("Sign Up as Patient"))
-                ],
-              )),
-        ),
-        InkWell(
-          onTap: () {
-            // navigate to doctor sign up
-          },
-          child: Container(
-              height: screenH * .40,
-              width: screenH * .40,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(15),
+                    const Expanded(flex: 1, child: Text("Sign Up as Patient"))
+                  ],
+                )),
+          ),
+          SizedBox(
+            height: screenH * .02,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SignUp2(s: 'D'),
                 ),
-                boxShadow: [
-                  BoxShadow(
-                      // color: Color.fromRGBO(0, 119, 182, 0.6),
-                      color: const Color(0xff0077B6).withOpacity(.3),
-                      offset: const Offset(3, 3),
-                      blurRadius: 6),
-                ],
-                color: Colors.white,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  LottieBuilder.network(
-                    "https://assets5.lottiefiles.com/packages/lf20_be0l7A.json",
-                    fit: BoxFit.cover,
+              );
+            },
+            child: Container(
+                height: screenH * .40,
+                width: screenH * .40,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
                   ),
-                  const Text("Sign Up as Doctor")
-                ],
-              )),
-        ),
-      ],
+                  boxShadow: [
+                    BoxShadow(
+                        // color: Color.fromRGBO(0, 119, 182, 0.6),
+                        color: const Color(0xff0077B6).withOpacity(.3),
+                        offset: const Offset(3, 3),
+                        blurRadius: 6),
+                  ],
+                  color: Colors.white,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    LottieBuilder.network(
+                      "https://assets5.lottiefiles.com/packages/lf20_be0l7A.json",
+                      fit: BoxFit.cover,
+                    ),
+                    const Text("Sign Up as Doctor")
+                  ],
+                )),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -199,7 +215,7 @@ class _SignInState extends State<SignIn> {
                 email: textEditingControllerUsername.text,
                 password: textEditingControllerPassword.text)
             .then((value) {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => Dashboard(),
@@ -339,6 +355,10 @@ class _SignInState extends State<SignIn> {
                   selected = 0;
                 });
                 signIn();
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("Error occured"),
+                  backgroundColor: Colors.red,
+                ));
               },
               child: SizedBox(
                 height: 40,
