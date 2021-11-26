@@ -81,6 +81,8 @@ class BufferWidget extends StatelessWidget {
             } else {
               return DocApointReq();
             }
+          } else {
+            return SignInUp();
           }
 
           return Reload();
@@ -97,17 +99,7 @@ class Reload extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: IconButton(
-          icon: const Icon(Icons.refresh),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BufferWidget(),
-              ),
-            );
-          },
-        ),
+        child: CircularProgressIndicator(),
       ),
     );
   }
