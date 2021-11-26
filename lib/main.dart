@@ -83,11 +83,32 @@ class BufferWidget extends StatelessWidget {
             }
           }
 
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
+          return Reload();
         });
+  }
+}
+
+class Reload extends StatelessWidget {
+  const Reload({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BufferWidget(),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }

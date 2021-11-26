@@ -2,7 +2,7 @@
     package="com.sustdynamo.hacknsu3_sust_dynamo">
    <application
         android:label="hacknsu3_sust_dynamo"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
