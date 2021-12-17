@@ -4,13 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hacknsu3_sust_dynamo/screens/Home/doc_apoint_req/doc_apoint_req_page.dart';
 
-import 'package:hacknsu3_sust_dynamo/screens/Home/doctor_profiledit_page.dart';
-import 'package:hacknsu3_sust_dynamo/screens/patient_home/tabs/patient_profiledit_page.dart';
-
-import 'package:hacknsu3_sust_dynamo/screens/make_appointment/make_appointment.dart';
 import 'package:hacknsu3_sust_dynamo/screens/patient_home/dashboard.dart';
 import 'package:hacknsu3_sust_dynamo/screens/sign_in_up/sign_in_up.dart';
-import 'package:hacknsu3_sust_dynamo/screens/widget/top_blue_white.dart';
+
 
 import 'const.dart';
 
@@ -77,12 +73,12 @@ class BufferWidget extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.data != null) {
             if (snapshot.data!.displayName == 'P') {
-              return Dashboard();
+              return const Dashboard();
             } else {
-              return DocApointReq();
+              return const DocApointReq();
             }
           } else {
-            return SignInUp();
+            return const SignInUp();
           }
 
           return Reload();
@@ -97,7 +93,7 @@ class Reload extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),
